@@ -27,7 +27,9 @@ public class PersonController {
    */
 
   @Autowired
-  public PersonController(PersonService personService) { this.personService = personService; }
+  public PersonController(PersonService personService) {
+    this.personService = personService;
+  }
 
   /**
    insere uma pessoa no bd.

@@ -3,8 +3,10 @@ package com.betrybe.agrix.advice;
 import com.betrybe.agrix.exception.CropNotFoundException;
 import com.betrybe.agrix.exception.FarmNotFoundException;
 import com.betrybe.agrix.exception.FertilizerNotFoundException;
+import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 /**
@@ -41,6 +43,16 @@ public class ControllerAdvice {
     return ResponseEntity
         .status(HttpStatus.NOT_FOUND)
         .body("Fertilizante não encontrado!");
+  }
+  /**
+   * método para tratar a exceção de autenticacao.
+   */
+
+  @ExceptionHandler(BadCredentialsException.class)
+  public ResponseEntity<String> handleAuthException(Exception exception) {
+    return ResponseEntity
+        .status(HttpStatus.FORBIDDEN)
+        .body("Erro interno!");
   }
 
   /**

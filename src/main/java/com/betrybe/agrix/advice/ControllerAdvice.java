@@ -3,6 +3,7 @@ package com.betrybe.agrix.advice;
 import com.betrybe.agrix.exception.CropNotFoundException;
 import com.betrybe.agrix.exception.FarmNotFoundException;
 import com.betrybe.agrix.exception.FertilizerNotFoundException;
+import java.nio.file.AccessDeniedException;
 import org.apache.tomcat.websocket.AuthenticationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -44,24 +45,18 @@ public class ControllerAdvice {
         .status(HttpStatus.NOT_FOUND)
         .body("Fertilizante não encontrado!");
   }
-  /**
-   * método para tratar a exceção de autenticacao.
-   */
 
-  @ExceptionHandler(BadCredentialsException.class)
-  public ResponseEntity<String> handleAuthException(Exception exception) {
-    return ResponseEntity
-        .status(HttpStatus.FORBIDDEN)
-        .body("Erro interno!");
-  }
+  //  @ExceptionHandler(BadCredentialsException.class)
+  //  public ResponseEntity<String> handleAuthException(Exception exception) {
+  //    return ResponseEntity
+  //        .status(HttpStatus.FORBIDDEN)
+  //        .body("Erro interno!");
+  //  }
 
-  /**
-   * método para tratar a exceção generica.
-   */
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<String> handleException(Exception exception) {
-    return ResponseEntity
-        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body("Erro interno!");
-  }
+  //  @ExceptionHandler(Exception.class)
+  //  public ResponseEntity<String> handleException(Exception exception) {
+  //    return ResponseEntity
+  //        .status(HttpStatus.INTERNAL_SERVER_ERROR)
+  //        .body("Erro interno!");
+  //  }
 }

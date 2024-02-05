@@ -10,6 +10,7 @@ import com.betrybe.agrix.service.FarmService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,6 +51,7 @@ public class FarmController {
    */
 
   @GetMapping()
+  @Secured({"ROLE_ADMIN", "ROLE_MANAGER", "ROLE_USER"})
   public ResponseEntity<List<FarmDto>> findAll() {
     List<Farm> allFarms = farmService.findAll();
     List<FarmDto> farmList = allFarms.stream().map(FarmDto::fromEntity).toList();
